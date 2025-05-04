@@ -52,3 +52,31 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
+/* Add this to your Cart.css for the PKR symbol alignment */
+.cart-total-details p:last-child {
+    font-family: monospace; /* Makes currency symbols align better */
+}
+
+/* Modal styles (if not already in Modal.css) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}

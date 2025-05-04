@@ -1,47 +1,90 @@
 import React, { useState } from 'react';
 import './Auth.css';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../Modal/Modal';  // Go up one level, then into Modal folder
 
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+
+  // Mock user database (in a real app, this would be an API call)
+  const users = JSON.parse(localStorage.getItem('users')) || [];
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Reset error
+    setError('');
+    
+    // Validation
     if (!name || !email || !password) {
       setError('All fields are required!');
+      setShowModal(true);
       return;
     }
-    console.log('Signup:', { name, email, password });
-    navigate('/login');
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address!');
+      setShowModal(true);
+      return;
+    }
+
+    // Check if email already exists
+    const emailExists = users.some(user => user.email === email);
+    if (emailExists) {
+      setError('Email already in use. Please use a different email or login.');
+      setShowModal(true);
+      return;
+    }
+
+    // Password strength (basic check)
+    if (password.length < 6) {
+      setError('Password should be at least 6 characters long!');
+      setShowModal(true);
+      return;
+    }
+
+    // Create new user
+    const newUser = { name, email, password };
+    const updatedUsers = [...users, newUser];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    
+    console.log('Signup successful:', newUser);
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    navigate('/');
   };
 
   return (
     <div className="auth-container">
       <div className="auth-form">
         <h1>Create an Account</h1>
-        {error && <p className="auth-error">{error}</p>}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Full Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Password (min 6 characters)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <button type="submit">Sign Up</button>
         </form>
@@ -49,6 +92,13 @@ const Signup = () => {
           Already have an account? <span onClick={() => navigate('/login')}>Login</span>
         </p>
       </div>
+      
+      {showModal && (
+        <Modal 
+          message={error} 
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 };

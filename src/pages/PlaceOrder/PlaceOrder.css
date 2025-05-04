@@ -33,3 +33,33 @@
 .place-order .cart-total button{
     margin-top: 30px;
 }
+
+.pickup-instructions {
+    color: #666;
+    font-size: 14px;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.place-order button[type="submit"] {
+    background-color: maroon;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.place-order button[type="submit"]:hover {
+    background-color: #6f1d0a;
+}
+
+.place-order button[type="submit"]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
