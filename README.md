@@ -1,12 +1,16 @@
-# React + Vite
+AVWM - Restaurant Website
+AVWM (A Virtual Waiting Menu) is a full-stack restaurant website built using React, Node.js, and SQL.
+It offers a smooth online experience where users can create accounts, browse the menu, add items to their cart, and place food orders.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Features
+Login/Signup: Secure user registration and authentication.
+Menu & Prices: Browse food items with detailed descriptions and prices.
+Order Food: Add dishes to a food cart and place an order easily.
+Food Cart: Review, update, or remove items before checkout.
+Tech Stack
+Frontend: React.js
+Backend: Node.js with Express
+Database: SQL (MySQL/PostgreSQL)
+About the Project
+AVWM is designed to enhance the dining experience by bringing restaurant services online.
+With a focus on ease of use, customers can view menus, manage their orders, and enjoy a hassle-free ordering system.
